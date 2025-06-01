@@ -26,29 +26,6 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 After setting the policy, you should be able to run the script.
 
-## Common Prerequisites
-
-*   PowerShell Version 5.1 or higher.
-*   A GitLab Personal Access Token (PAT), Deploy Token, or CI Job Token with the necessary scopes (e.g., `api` or `read_api` and `write_repository` / `read_repository`).
-
-## Common PowerShell Execution Policy
-
-By default, PowerShell's execution policy might prevent you from running local scripts. If you encounter an error like "File ... cannot be loaded because running scripts is disabled on this system," you'll need to adjust the execution policy.
-
-To allow scripts to run for the **current PowerShell session only** (recommended for safety and testing), open PowerShell and run:
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope Process
-```
-
-For a more **persistent change for the current user** (use with caution):
-
-```powershell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-After setting the policy, you should be able to run the scripts.
-
 ## `Upload-GitLabGenericPackage.ps1`
 
 This script uploads a specified file to a GitLab project's generic package registry.
