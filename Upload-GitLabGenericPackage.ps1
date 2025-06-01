@@ -102,6 +102,17 @@ function Write-Log {
     Write-Host ("[{0}] [{1}] {2}" -f $Timestamp, $Level, $Message)
 }
 
+
+# --- Force TLS 1.2 for secure connections ---
+try {
+    Write-Log -Level DEBUG -Message "Attempting to set SecurityProtocol to Tls12."
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+    Write-Log -Level DEBUG -Message ("Current SecurityProtocol: {0}" -f [System.Net.ServicePointManager]::SecurityProtocol.ToString())
+} catch {
+    Write-Log -Level WARN -Message ("Failed to explicitly set SecurityProtocol to Tls12. Error: {0}" -f $_.Exception.Message)
+    Write-Log -Level WARN -Message "The script will proceed with system default security protocols. This might lead to connection issues if the server requires TLS 1.2+ and the system default is older."
+}
+
 # --- Validate Parameters ---
 
 if (-not (Test-Path -Path $FileToUpload -PathType Leaf)) {
