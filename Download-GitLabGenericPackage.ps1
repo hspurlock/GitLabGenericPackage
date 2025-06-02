@@ -179,7 +179,8 @@ $InvokeRestMethodParams = @{
     Uri = $DownloadUrl
     Method = 'GET' # Explicitly GET, though it's default for Invoke-RestMethod
     Headers = $Headers
-    OutFile = $OutputFile
+    OutFile = $OutputFile,
+    TimeoutSec = 0 # Infinite timeout for large file downloads
 }
 
 if ($DebugMode) {

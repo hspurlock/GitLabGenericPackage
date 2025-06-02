@@ -169,7 +169,8 @@ $InvokeRestMethodParams = @{
     Method = 'PUT'
     Headers = $Headers
     InFile = $FileToUpload
-    ContentType = 'application/octet-stream' # Standard for binary files
+    ContentType = 'application/octet-stream', # Standard for binary files
+    TimeoutSec = 0 # Infinite timeout for large file uploads
 }
 
 if ($DebugMode) {

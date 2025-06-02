@@ -156,6 +156,9 @@ CURL_STDERR_TMP=$(mktemp)
 # -k to skip SSL verification
 # -L to follow redirects
 HTTP_STATUS=$(curl -sS -w "%{http_code}" -k -L \
+    --keepalive-time 60 \
+    --max-time 0 \
+    --connect-timeout 30 \
     -H "$AUTH_HEADER_FOR_DOWNLOAD" \
     -o "$OUTPUT_FILE" \
     "$DOWNLOAD_URL" 2> "$CURL_STDERR_TMP")

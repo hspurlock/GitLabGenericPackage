@@ -140,6 +140,9 @@ echo_info "Attempting upload..."
 curl_cmd_args=(
     --show-error # Shows curl's own errors if any
     -k # Skip SSL verification
+    --keepalive-time 60 # Enable TCP keep-alives every 60 seconds
+    --max-time 0 # Allow unlimited time for the transfer (0 means unlimited)
+    --connect-timeout 30 # Allow 30 seconds for initial connection
     -H "$AUTH_HEADER_FOR_UPLOAD"
     -H "Content-Type: application/octet-stream"
     -X PUT
